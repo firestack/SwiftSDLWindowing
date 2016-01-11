@@ -19,10 +19,30 @@ public class Rect:UObject, Tickable, Renderable{
 
 		if ((rect.x+rect.w) > 600 || rect.x < 0){
 			velocity.x = -velocity.x
+
+			if (rect.x+rect.w) > 600{
+				rect.x = 600 - rect.w
+
+			}
+			if rect.x < 0{
+				rect.x = 0
+
+			}
+
 		}
 
 		if ((rect.y+rect.h) > 400 || rect.y < 0){
 			velocity.y = -velocity.y
+
+			if (rect.y+rect.h) > 400{
+				rect.y = 400 - rect.h
+
+			}
+			if (rect.y < 0){
+				rect.y = 0
+
+			}
+
 		}
 	}
 

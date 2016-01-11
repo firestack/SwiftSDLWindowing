@@ -4,7 +4,8 @@ import CSDL
 
 
 
-
+// Seed randomizer
+srand(UInt32(NSDate().timeIntervalSinceReferenceDate))
 Engine.start()
 print(Engine.VERSION)
 
@@ -15,7 +16,7 @@ var renderer = Engine.renderers[0]
 
 func makeRect(){
 	var a = Rect( Int32(random()) % 600, Int32(random()) % 400, 20, 20)
-	a.SetVelocity(Int32(random()) % 20, Int32(random()) % 20)
+	a.SetVelocity(Int32(random()) % 5, Int32(random()) % 5)
 }
 
 var EventHandler = {

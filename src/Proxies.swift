@@ -20,7 +20,7 @@ public class ControlProxy {
 	private static func renderPre(){
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(Engine.renderers[0])
-		SDL_SetRenderDrawColor(renderer, 255, 0xF0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, 0x00, 0xF0, 0xCC, 255);
 	}
 
 	private static func renderMain(){
