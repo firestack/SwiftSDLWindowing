@@ -13,8 +13,9 @@ Engine.createWindow(winSizeX:600, winSizeY:400)
 var GWindow = Engine.windows[0]
 var renderer = Engine.renderers[0]
 
-for i in 0..<10{
-	var a = Rect(Int32(i*2),Int32(i*2),2,2)
+func makeRect(){
+	var a = Rect( Int32(random()) % 600, Int32(random()) % 400, 20, 20)
+	a.SetVelocity(Int32(random()) % 20, Int32(random()) % 20)
 }
 
 var EventHandler = {
@@ -25,6 +26,12 @@ var EventHandler = {
 			switch(event.type){
 				case SDL_QUIT.rawValue:
 					Engine.Running = false
+
+				case SDL_MOUSEBUTTONDOWN.rawValue:
+					for i in 0..<5{makeRect()}
+
+				case SDL_MOUSEBUTTONUP.rawValue:
+					break;
 
 				default:
 					break
@@ -39,7 +46,12 @@ var Mainloop = {
 	}
 }
 
+for i in 0..<1{
+	makeRect()
+}
+
 NSThread.detachNewThread({EventHandler()})
+ControlProxy.startRenderThread()
 Mainloop()
 
 Engine.stop()

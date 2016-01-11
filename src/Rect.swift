@@ -10,26 +10,29 @@ public class Rect:UObject, Tickable, Renderable{
 		rect.y = y
 		rect.w = w
 		rect.h = h
-		velocity.x = 1
-		velocity.y = 2
+
+		velocity.x = 10
+		velocity.y = 15
 	}
 	public func tick(dt:Float){
-		translate(velocity.x, velocity.y)
+		translate(velocity.x, velocity.y, dampening:(Int32(dt*10000)))
 
-		if ((rect.x+rect.w) > 0 || rect.x < 0){
+		if ((rect.x+rect.w) > 600 || rect.x < 0){
 			velocity.x = -velocity.x
 		}
 
-		if ((rect.y+rect.h) > 0 || rect.y < 0){
+		if ((rect.y+rect.h) > 400 || rect.y < 0){
 			velocity.y = -velocity.y
 		}
 	}
 
 	public func render(){
 		//SDL_FillRect( SDL_GetWindowSurface( Engine.windows[0]), &rect, SDL_MapRGB(SDL_GetWindowSurface( Engine.windows[0]).format, 255, 0, 0))
+		SDL_RenderDrawRect(Engine.renderers[0], &rect)
 	}
 
-	public func translate(x:Int32 = 0,_ y:Int32 = 0){
+	public func translate(x:Int32 = 0,_ y:Int32 = 0, dampening:Int32 = 1){
+
 		rect.x += x
 		rect.y += y
 	}
